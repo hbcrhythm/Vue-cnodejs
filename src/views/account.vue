@@ -27,6 +27,7 @@
     </div>
 </template>
 <script>
+    console.log(1231);
     import nvHead from '../components/header.vue';
     export default {
         methods: {
