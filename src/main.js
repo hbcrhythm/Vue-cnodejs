@@ -5,9 +5,12 @@ import filters from './filters';
 import routes from './routers';
 import Alert from './libs/alert';
 import store from './vuex/user';
+import vueResource from 'vue-resource';
+// import mysql from 'mysql2';
 import FastClick from 'fastclick';
 Vue.use(VueRouter);
 Vue.use(Alert);
+Vue.use(vueResource);
 
 $.ajaxSettings.crossDomain = true;
 
@@ -26,6 +29,9 @@ if (window.sessionStorage.user) {
     store.dispatch('setUserInfo', JSON.parse(window.sessionStorage.user));
 }
 
+// VueRouter.post('/api/lookupAccount', (req, res) => {
+//     console.log(req);
+// });
 // 登录中间验证，页面需要登录而没有登录的情况直接跳转登录
 router.beforeEach((to, from, next) => {
     // 处理左侧滚动不影响右边

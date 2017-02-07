@@ -74,6 +74,14 @@ const routers = [{
         });
     }
 }, {
+    path: '/api/lookupAccount',
+    name: 'api',
+    component(resolve) {
+        require.ensure(['./views/account.vue'], () => {
+            resolve(require('./views/account.vue'));
+        });
+    }
+}, {
     path: '*',
     component: Home
 }];

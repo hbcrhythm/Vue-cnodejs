@@ -62,5 +62,10 @@ module.exports = merge(baseWebpackConfig, {
       name: 'manifest',
       chunks: ['vendor']
     })
-  ]
+  ],
+  node:{
+        fs:'empty',
+        net:'empty',
+        tls:'empty'
+  }
 })
