@@ -35,6 +35,7 @@
                 this.$http.post('/api/lookupAccount', {foo: 'bar'}).then(response => {
                     console.log(response);
                 }, response => {
+                    console.log(response);
                     // error callback
                 });
             }

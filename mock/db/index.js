@@ -28,9 +28,12 @@
 //     { username: <String> } // 对应着 msgs[i].author
 //    */
 // }).value();
-import mysql from mysql2;
-import dbconfig from '../../build/config/DB.js';
-
-var connection = mysql.createConnection(dbconfig.mysql);
-
-module.exports = db;
+var mysql = require('mysql2');
+// var await = require('asyncawait/await');
+// import dbconfig from '../../build/config/DB.js';
+var dbconfig = require('../../build/config/DB.js');
+var connection = (mysql.createConnection(dbconfig.mysql));
+// connection.execute('SELECT * FROM account', function(err, results){
+// 	console.log(results[0].account);
+// });
+module.exports = {conn : connection};

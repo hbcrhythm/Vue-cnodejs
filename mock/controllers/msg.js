@@ -77,3 +77,13 @@ exports.remove = function (req, res) {
   if (target) return res.ajaxReturn(target);
   res.ajaxReturn(false, { errMsg: '删除失败' });
 };
+
+exports.lookupAccount = function (req, res){
+  db.conn.execute('SELECT * FROM account', function(err, results){
+    // console.log(results[0]);
+    res.ajaxReturn(results[0]);
+  });
+  // console.log("rows", rows);
+  // console.log("fields", fields);
+  // res.ajaxReturn(false, { errMsg: '查询失败' });
+}

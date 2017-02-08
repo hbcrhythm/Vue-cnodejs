@@ -58,4 +58,8 @@ module.exports = [{
   method: 'DELETE',
   middlewares: [interceptor.NEED_AUTH],
   handler: authCtrls.logout
+}, {
+  path: '/api/lookupAccount',
+  method: 'POST',
+  handler: msgCtrls.lookupAccount
 }];
