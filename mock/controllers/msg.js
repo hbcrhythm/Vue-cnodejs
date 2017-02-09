@@ -79,10 +79,24 @@ exports.remove = function (req, res) {
 };
 
 exports.lookupAccount = function (req, res){
-  db.conn.execute('SELECT * FROM account', function(err, results){
-    // console.log(results[0]);
-    res.ajaxReturn(results[0]);
+  // db.conn.execute('SELECT * FROM account', function(err, results){
+  //   // console.log(results[0]);
+  //   res.ajaxReturn(results[0]);
+  // });
+  
+  var result1 = db.test('SELECT * FROM account').then((R) => {
+    var rv = {};
+    for (var i = 0; i < R.length; ++i)
+      rv[i] = R[i];
+    res.ajaxReturn(rv);
+    R
   });
+  console.log("result1" , result1);
+ 
+  // for (var i = 0; i < result1.length; ++i)
+  //   rv[i] = result1[i];
+  // console.log("rv", rv);
+  // res.ajaxReturn(rv);
   // console.log("rows", rows);
   // console.log("fields", fields);
   // res.ajaxReturn(false, { errMsg: '查询失败' });

@@ -28,12 +28,53 @@
 //     { username: <String> } // 对应着 msgs[i].author
 //    */
 // }).value();
-var mysql = require('mysql2');
-// var await = require('asyncawait/await');
-// import dbconfig from '../../build/config/DB.js';
-var dbconfig = require('../../build/config/DB.js');
-var connection = (mysql.createConnection(dbconfig.mysql));
-// connection.execute('SELECT * FROM account', function(err, results){
-// 	console.log(results[0].account);
-// });
-module.exports = {conn : connection};
+// 
+// 
+// var mysql = require('mysql2');
+//   // var await = require('asyncawait/await');
+//   // import dbconfig from '../../build/config/DB.js';
+// var dbconfig = require('../../build/config/DB.js');
+// var connection = (mysql.createConnection(dbconfig.mysql));
+//   // connection.execute('SELECT * FROM account', function(err, results){
+//   // 	console.log(results[0].account);
+//   // });
+// module.exports = {conn : connection};
+
+
+// get the client
+// let mysql = require('mysql2/promise');
+// // get the promise implementation, we will use bluebird
+// // let bluebird = require('bluebird');
+// console.log("mysql" , mysql);
+// let dbconfig = require('../../build/config/DB.js');
+// // create the connection
+// !function() {
+//   const connection = await mysql.createConnection(dbconfig);
+// }();
+// module.exports = {conn : connection};
+
+let mysql = require('mysql2/promise');
+// var promise = require('bluebird');
+let dbconfig = require('../../build/config/DB.js');
+
+async function test(sql) {
+  const c = await mysql.createConnection(dbconfig.mysql);
+  // console.log('connected!');
+  const [rows, fields] = await c.query(sql);
+  // console.log(rows);
+  return rows;
+}
+
+test1 = function(sql){
+  return new Promise(console.log(123123));
+}
+
+var body = await Promise.resolve(test1);
+console.log(body);
+module.exports = {
+  test: test
+}
+
+
+// test('show databases');
+// let [rows, fields] = await c.execute('select * from account limit 1');
