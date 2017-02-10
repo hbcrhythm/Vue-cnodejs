@@ -4,6 +4,7 @@ module.exports = {
 		user : 'root',
 		password : 'root',
 		database :'np',
-		port : '3306'
+		port : '3306',
+		connectionLimit: 1000
 	}
 }
