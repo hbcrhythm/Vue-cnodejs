@@ -1,5 +1,6 @@
 import Vue from 'vue';
-import $ from 'webpack-zepto';
+// import $ from 'webpack-zepto';
+import $ from 'jquery';
 import VueRouter from 'vue-router';
 import filters from './filters';
 import routes from './routers';

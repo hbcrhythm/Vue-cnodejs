@@ -6,6 +6,8 @@
   </router-link>
 </template>
 <script>
+import $ from 'jquery';
+
 export default {
     props: {
         path: { type: String, required: true },
@@ -29,10 +31,11 @@ export default {
             return { path: this.path, exact: this.isExact };
         }
     },
-    attached () {
-        if (!this.isDynamicPath) return;
-      //  $(this.$el).on('click', () =>
-      //      $.toast({heading: '动态路由不可直接点击访问',icon: 'info',stack: false}))
+    mounted: function () {
+        this.$nextTick(function () {
+            // if (!this.isDynamicPath) return;
+            $(this.$el).on('click', () => $.toast({heading: '动态路由不可直接点击访问', icon: 'info', stack: false}));
+        });
     }
 };
 </script>

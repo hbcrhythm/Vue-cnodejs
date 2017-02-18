@@ -78,7 +78,7 @@ const routers = [{
     },
     meta: {
         showInSidebar: true,
-        title: '关于',
+        title: '灰色天空',
         icon: 'icon-about iconfont'
     }
 }, {
@@ -93,7 +93,7 @@ const routers = [{
         showInSidebar: false
     }
 }, {
-    path: '/api/lookupAccount',
+    path: '/api',
     name: 'api',
     component(resolve) {
         require.ensure(['./views/account.vue'], () => {
@@ -102,9 +102,50 @@ const routers = [{
     },
     meta: {
         showInSidebar: true,
-        title: '查询账号',
+        title: '查询账号信息',
         icon: 'icon-about iconfont'
-    }
+    },
+    children: [
+        {
+            path: '/lookupAccount',
+            name: 'apiAccount',
+            component(resolve) {
+                require.ensure(['./views/account.vue'], () => {
+                    resolve(require('./views/account.vue'));
+                });
+            },
+            meta: {
+                title: '查询1',
+                icon: 'icon-about iconfont'
+            }
+        },
+        {
+            path: '/lookupAccount',
+            name: 'apiAccount2',
+            component(resolve) {
+                require.ensure(['./views/account.vue'], () => {
+                    resolve(require('./views/account.vue'));
+                });
+            },
+            meta: {
+                title: '查询2',
+                icon: 'icon-about iconfont'
+            }
+        },
+        {
+            path: '/lookupAccount',
+            name: 'apiAccount3',
+            component(resolve) {
+                require.ensure(['./views/account.vue'], () => {
+                    resolve(require('./views/account.vue'));
+                });
+            },
+            meta: {
+                title: '查询3',
+                icon: 'icon-about iconfont'
+            }
+        }
+    ]
 }, {
     path: '*',
     component: Home,
