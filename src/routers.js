@@ -14,15 +14,18 @@ const List = resolve => {
 const routers = [{
     path: '/',
     name: 'home',
-    component: Home
+    component: Home,
+    meta: { showInSidebar: false }
 }, {
     path: '/cnodevue',
     name: 'cnodevue',
-    component: Home
+    component: Home,
+    meta: { showInSidebar: false }
 }, {
     path: '/list',
     name: 'list',
-    component: List
+    component: List,
+    meta: { showInSidebar: false }
 }, {
     path: '/topic/:id',
     name: 'topic',
@@ -30,7 +33,8 @@ const routers = [{
         require.ensure(['./views/topic.vue'], () => {
             resolve(require('./views/topic.vue'));
         });
-    }
+    },
+    meta: { showInSidebar: false }
 }, {
     path: '/add',
     name: 'add',
@@ -39,7 +43,10 @@ const routers = [{
             resolve(require('./views/new.vue'));
         });
     },
-    meta: { requiresAuth: true }
+    meta: {
+        requiresAuth: true,
+        showInSidebar: false
+    }
 }, {
     path: '/message',
     name: 'message',
@@ -48,7 +55,10 @@ const routers = [{
             resolve(require('./views/message.vue'));
         });
     },
-    meta: { requiresAuth: true }
+    meta: {
+        requiresAuth: true,
+        showInSidebar: false
+    }
 }, {
     path: '/user/:loginname',
     name: 'user',
@@ -56,7 +66,8 @@ const routers = [{
         require.ensure(['./views/user.vue'], () => {
             resolve(require('./views/user.vue'));
         });
-    }
+    },
+    meta: { showInSidebar: false }
 }, {
     path: '/about',
     name: 'about',
@@ -64,6 +75,11 @@ const routers = [{
         require.ensure(['./views/about.vue'], () => {
             resolve(require('./views/about.vue'));
         });
+    },
+    meta: {
+        showInSidebar: true,
+        title: '关于',
+        icon: 'icon-about iconfont'
     }
 }, {
     path: '/login',
@@ -72,6 +88,9 @@ const routers = [{
         require.ensure(['./views/login.vue'], () => {
             resolve(require('./views/login.vue'));
         });
+    },
+    meta: {
+        showInSidebar: false
     }
 }, {
     path: '/api/lookupAccount',
@@ -80,10 +99,16 @@ const routers = [{
         require.ensure(['./views/account.vue'], () => {
             resolve(require('./views/account.vue'));
         });
+    },
+    meta: {
+        showInSidebar: true,
+        title: '查询账号',
+        icon: 'icon-about iconfont'
     }
 }, {
     path: '*',
-    component: Home
+    component: Home,
+    meta: { showInSidebar: false }
 }];
 
 export default routers;

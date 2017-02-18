@@ -11,6 +11,7 @@
             <router-link class="icon-about iconfont item" :to="{'name':'about'}">关于</router-link>
             <router-link class="icon-about iconfont item" :to="{'path':'/api/lookupAccount'}">账号信息</router-link>
         </section>
+       <sub-sidebar></sub-sidebar>
     </section>
 </template>
 <script>
@@ -18,7 +19,8 @@
         replace: true,
         props: ['showMenu', 'pageType', 'nickName', 'profileUrl'],
         components: {
-            'userInfo': require('./user-info.vue')
+            'userInfo': require('./user-info.vue'),
+            'subSidebar': require('./Sidebar/index.vue')
         }
     };
 </script>
