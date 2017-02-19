@@ -1,36 +1,34 @@
 <template>
     <div>
-        <section id="page">
-            <!-- 首页列表 -->
-            <ul class="posts-list">
-                <li v-for="item in topics">
-                    <router-link :to="{name:'topic',params:{id:item.id}}">
-                    <h3 v-text="item.title"
-                            :class="getTabInfo(item.tab, item.good, item.top, true)"
-                            :title="getTabInfo(item.tab, item.good, item.top, false)">
-                    </h3>
-                    <div class="content">
-                        <img class="avatar" :src="item.author.avatar_url" />
-                        <div class="info">
-                            <p>
-                                <span class="name">
-                                    {{item.author.loginname}}
-                                </span>
-                                <span class="status" v-if="item.reply_count > 0">
-                                    <b>{{item.reply_count}}</b>
-                                    /{{item.visit_count}}
-                                </span>
-                            </p>
-                            <p>
-                                <time>{{item.create_at | getLastTimeStr(true)}}</time>
-                                <time>{{item.last_reply_at | getLastTimeStr(true)}}</time>
-                            </p>
-                        </div>
+        <!-- 首页列表 -->
+        <ul class="posts-list">
+            <li v-for="item in topics">
+                <router-link :to="{name:'topic',params:{id:item.id}}">
+                <h3 v-text="item.title"
+                        :class="getTabInfo(item.tab, item.good, item.top, true)"
+                        :title="getTabInfo(item.tab, item.good, item.top, false)">
+                </h3>
+                <div class="content">
+                    <img class="avatar" :src="item.author.avatar_url" />
+                    <div class="info">
+                        <p>
+                            <span class="name">
+                                {{item.author.loginname}}
+                            </span>
+                            <span class="status" v-if="item.reply_count > 0">
+                                <b>{{item.reply_count}}</b>
+                                /{{item.visit_count}}
+                            </span>
+                        </p>
+                        <p>
+                            <time>{{item.create_at | getLastTimeStr(true)}}</time>
+                            <time>{{item.last_reply_at | getLastTimeStr(true)}}</time>
+                        </p>
                     </div>
-                    </router-link>
-                </li>
-            </ul>
-        </section>
+                </div>
+                </router-link>
+            </li>
+        </ul>
         <nv-top></nv-top>
     </div>
 </template>

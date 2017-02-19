@@ -1,5 +1,5 @@
 <template>
-	<ol class="breadcrumb clearfix m-0-auto">
+	<ol class="breadcrumb clearfix">
 		<i class="icon-about1 iconfont "></i>
 		<li v-for="(route, index) in matchedRoutes" class="m-t-8" :class="{'active': index === matchedRoutes.length - 1}">
 			<span v-if="index === matchedRoutes.length - 1">

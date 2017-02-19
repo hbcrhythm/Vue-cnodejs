@@ -1,9 +1,8 @@
 <template>
 	<div>
-		
 		<div class="panel panel-primary m-t-m-70-50">
 		  <div class="panel-heading">SUMMARY</div>
-		  <ul class="list-group">
+		  	<ul class="list-group">
 			    <li class="list-group-item">Cras justo odio</li>
 			    <li class="list-group-item">Dapibus ac facilisis in</li>
 			    <li class="list-group-item">Morbi leo risus</li>

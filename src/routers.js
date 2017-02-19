@@ -111,7 +111,7 @@ const routers = [{
     meta: {
         showInSidebar: true,
         title: '灰色天空',
-        icon: 'icon-about iconfont'
+        icon: 'icon-about1 iconfont'
     }
 }, {
     path: '/login',
@@ -136,7 +136,7 @@ const routers = [{
     meta: {
         showInSidebar: true,
         title: '查询账号信息',
-        icon: 'icon-about iconfont'
+        icon: 'icon-about1 iconfont'
     },
     children: [
         {

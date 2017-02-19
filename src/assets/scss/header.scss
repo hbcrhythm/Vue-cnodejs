@@ -6,7 +6,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    transition: all .3s ease;
+    transition: all 0.3s ease;
     box-shadow: 0 0 4px rgba(0,0,0,0.25);
     z-index: 6;
   }
@@ -29,13 +29,13 @@
   .toolbar-nav {
     width: 49px;
     height: 44px;
-    position: absolute;
+    position: relative;
     background: url("../images/components/nav_icon.png") no-repeat center center;
     background-size: 19px 16px;
     margin: 0;
     z-index: 1;
     top: 0;
-    left: 0;
+    left: 0
   }
 
   &>span {

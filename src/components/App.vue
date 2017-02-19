@@ -13,8 +13,12 @@
             <summary2></summary2>
         </div>
         <div class="col-md-9">
-            <breadcrumb class="m-t-m-70-50"></breadcrumb>
-            <router-view></router-view>                
+            <div>
+            <breadcrumb class="m-t-m-70-20"></breadcrumb>
+            </div>
+            <div class="m-t-10">
+                <router-view ></router-view>                
+            </div>
         </div>
     </div>
     <nv-top></nv-top>
@@ -50,12 +54,12 @@ export default {
 };
 </script>
 <style>
-.main-content {
-  min-height: 300px;
-  background-color: #f7f7f7;
-  border-radius: 5px;
+.m-t-m-70-20 {
+    margin: 70px 0px 20px 0px;
+
 }
-.m-t-m-70-50 {
-    margin: 70px;
+.m-t-10 {
+    margin-top: 0cm;
+
 }
 </style>

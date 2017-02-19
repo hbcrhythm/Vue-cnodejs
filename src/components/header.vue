@@ -10,6 +10,10 @@
                         @click="openMenu"
                         v-if="fixHead">
                 </div>
+                <div class="icon-about iconfont"
+                        @click="openServerMenu"
+                        v-if="fixHead">
+                </div>
                 <span v-text="pageType"></span>
                 <i class="num" v-if="messageCount > 0"> {{messageCount}}</i>
                 <router-link to="/add">
@@ -23,6 +27,8 @@
             :nick-name="nickname"
             :profile-url="profileimgurl"
             v-if="fixHead" ></nv-menu>
+        <server-lists :show-menu="showServerMenu">
+        </server-lists>
     </div>
 </template>
 
@@ -44,7 +50,8 @@
             return {
                 nickname: '',
                 profileimgurl: '',
-                show: false
+                show: false,
+                showServerMenu: false
             };
         },
         methods: {
@@ -54,11 +61,17 @@
             },
             showMenus() {
                 this.show = !this.show;
+                this.showServerMenu = false;
                 $('html, body, #page').removeClass('scroll-hide');
+            },
+            openServerMenu() {
+                this.showServerMenu = !this.showServerMenu;
+                $('html, body, #page').addClass('scroll-hide');
             }
         },
         components: {
-            'nvMenu': require('./menu.vue')
+            'nvMenu': require('./menu.vue'),
+            'serverLists': require('./Serverlists.vue')
         }
     };
 </script>

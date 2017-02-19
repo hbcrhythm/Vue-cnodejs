@@ -1,7 +1,7 @@
 <template>
   <router-link class="btn btn-default btn-block m-t-0 vlink"
   :class="{ 'matched-route': path === curMatchedPath }" :to="vlinkContent">
-    <i :class="icon" class="m-r-5"></i>
+    <i :class="icon" ></i>
     {{ title }}
   </router-link>
 </template>

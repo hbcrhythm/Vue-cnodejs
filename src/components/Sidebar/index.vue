@@ -5,7 +5,7 @@
         <a :href="'#panel'+index"
           class="btn btn-default btn-block"
           data-toggle="collapse" data-parent="#sidebar" >
-          <i :class="route.meta.icon"  class="m-r-5"></i>
+          <i :class="route.meta.icon"  class="m-l-10"></i>
           {{ route.meta.title }}
           <span class="caret"></span>
         </a>
@@ -61,5 +61,8 @@ export default {
 <style>
 .w-90p {
   width: 90%;
+}
+.m-l-10 {
+  margin: 0px 0px 0px 20px;
 }
 </style>
