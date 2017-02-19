@@ -15,17 +15,41 @@ const routers = [{
     path: '/',
     name: 'home',
     component: Home,
-    meta: { showInSidebar: false }
+    meta: {
+        showInSidebar: false,
+        title: '主页'
+    }
+}, {
+    path: '/redirect',
+    name: 'redirect',
+    component: {
+        beforeCreate () {
+            this.$router.replace({
+                path: decodeURIComponent(this.$route.query.dest || '/'),
+                force: true
+            });
+        },
+        template: '<span></span>'
+    },
+    meta: {
+        showInSidebar: false
+    }
 }, {
     path: '/cnodevue',
     name: 'cnodevue',
     component: Home,
-    meta: { showInSidebar: false }
+    meta: {
+        showInSidebar: false,
+        title: 'codevue'
+    }
 }, {
     path: '/list',
     name: 'list',
     component: List,
-    meta: { showInSidebar: false }
+    meta: {
+        showInSidebar: false,
+        title: '全部'
+    }
 }, {
     path: '/topic/:id',
     name: 'topic',
@@ -34,7 +58,10 @@ const routers = [{
             resolve(require('./views/topic.vue'));
         });
     },
-    meta: { showInSidebar: false }
+    meta: {
+        showInSidebar: false,
+        title: 'topic'
+    }
 }, {
     path: '/add',
     name: 'add',
@@ -45,7 +72,8 @@ const routers = [{
     },
     meta: {
         requiresAuth: true,
-        showInSidebar: false
+        showInSidebar: false,
+        title: 'add'
     }
 }, {
     path: '/message',
@@ -57,7 +85,8 @@ const routers = [{
     },
     meta: {
         requiresAuth: true,
-        showInSidebar: false
+        showInSidebar: false,
+        title: 'message'
     }
 }, {
     path: '/user/:loginname',
@@ -67,7 +96,10 @@ const routers = [{
             resolve(require('./views/user.vue'));
         });
     },
-    meta: { showInSidebar: false }
+    meta: {
+        showInSidebar: false,
+        title: 'user'
+    }
 }, {
     path: '/about',
     name: 'about',
@@ -90,14 +122,15 @@ const routers = [{
         });
     },
     meta: {
-        showInSidebar: false
+        showInSidebar: false,
+        title: 'login'
     }
 }, {
-    path: '/api',
-    name: 'api',
+    path: '/apiii',
+    name: 'apiii',
     component(resolve) {
-        require.ensure(['./views/account.vue'], () => {
-            resolve(require('./views/account.vue'));
+        require.ensure(['./views/children.vue'], () => {
+            resolve(require('./views/children.vue'));
         });
     },
     meta: {
@@ -107,8 +140,8 @@ const routers = [{
     },
     children: [
         {
-            path: '/lookupAccount',
-            name: 'apiAccount',
+            path: 'account',
+            name: 'account',
             component(resolve) {
                 require.ensure(['./views/account.vue'], () => {
                     resolve(require('./views/account.vue'));
@@ -149,7 +182,10 @@ const routers = [{
 }, {
     path: '*',
     component: Home,
-    meta: { showInSidebar: false }
+    meta: {
+        showInSidebar: false,
+        title: '主页'
+    }
 }];
 
 export default routers;

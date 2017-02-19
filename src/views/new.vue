@@ -1,8 +1,5 @@
 <template>
     <div>
-        <nv-head page-type="主题"
-            :show-menu="false"
-            :fix-head="true"></nv-head>
         <div class="add-container">
             <div class="line">选择分类：
                 <select class="add-tab" v-model="topic.tab">

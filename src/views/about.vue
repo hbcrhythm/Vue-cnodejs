@@ -1,9 +1,6 @@
 <template>
     <div style="height: 100%;">
-        <nv-head page-type="关于" :fix-head="true" :need-add="true" ></nv-head>
-        
         <dl class="about-info">
-
             <dt>关于项目</dt>
             <dd>该项目是基于Cnodejs的api，采用vue.js重写的webapp。</dd>
         

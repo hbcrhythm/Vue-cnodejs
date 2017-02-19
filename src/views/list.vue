@@ -1,12 +1,5 @@
 <template>
     <div>
-        <!-- 全局header -->
-        <nv-head :page-type="getTitleStr(searchKey.tab)"
-                ref="head"
-                :fix-head="true"
-                :need-add="true">
-        </nv-head>
-
         <section id="page">
             <!-- 首页列表 -->
             <ul class="posts-list">
@@ -170,7 +163,7 @@
                 this.searchKey.limit = 20;
                 this.getTopics();
                 // 隐藏导航栏
-                this.$refs.head.show = false;
+                // this.$root.$children[0].$refs.head.show = false;
             }
         },
         components: {

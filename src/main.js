@@ -8,6 +8,7 @@ import Alert from './libs/alert';
 import store from './vuex/user';
 import vueResource from 'vue-resource';
 // import mysql from 'mysql2';
+import App from 'components/app.vue';
 import FastClick from 'fastclick';
 Vue.use(VueRouter);
 Vue.use(Alert);
@@ -33,6 +34,7 @@ if (window.sessionStorage.user) {
 // VueRouter.post('/api/lookupAccount', (req, res) => {
 //     console.log(req);
 // });
+
 // 登录中间验证，页面需要登录而没有登录的情况直接跳转登录
 router.beforeEach((to, from, next) => {
     // 处理左侧滚动不影响右边
@@ -53,5 +55,6 @@ router.beforeEach((to, from, next) => {
 
 new Vue({
     router,
-    store
+    store,
+    render: h => h(App)
 }).$mount('#app');

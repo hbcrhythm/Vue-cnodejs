@@ -1,11 +1,5 @@
 <template>
     <div>
-        <nv-head page-type="主题"
-                :show-menu="showMenu"
-                :need-add="true"
-                :fix-head="true">
-        </nv-head>
-
         <div id="page"
                 :class="{'show-menu':showMenu}"
                 v-if="topic.title">

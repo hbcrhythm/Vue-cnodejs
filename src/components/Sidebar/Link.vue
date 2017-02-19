@@ -18,10 +18,10 @@ export default {
     computed: {
         curMatchedRoute () {
             const { matched } = this.$route;
-            return matched[matched.length - 1];
+            return matched[matched.length - 1] || '';
         },
         curMatchedPath () {
-            return this.curMatchedRoute.fullPath;
+            return this.curMatchedRoute.path;
         },
         isDynamicPath () {
             return this.path.includes(':');

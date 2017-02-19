@@ -195,6 +195,15 @@ exports.throttle = (fn, wait, mustRun) => {
     };
 };
 
+/**
+ * 去掉 query string
+ * @param  {[string]} url [要过滤的url]
+ * @return {[string]}     [description]
+ */
+exports.trimQs = (url) => {
+    return url ? url.split('?')[0] : '';
+};
+
 exports.linkUsers = linkUsers;
 exports.fetchUsers = fetchUsers;
 exports.getCheck = getCheck;

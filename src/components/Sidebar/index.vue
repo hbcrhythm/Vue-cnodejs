@@ -11,7 +11,7 @@
         </a>
         <div :id="'panel'+index" class="collapse w-90p m-0-auto">
           <link2 v-for="subRoute in route.children"
-            :path="route.path+subRoute.path"
+            :path="route.path+'/'+subRoute.path"
             :title="subRoute.meta.title"
             :icon="subRoute.meta.icon">
             {{$route.path+subRoute.path}}

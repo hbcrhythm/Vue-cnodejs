@@ -1,7 +1,5 @@
 <template>
-    <div style="height: 100%;">
-        <nv-head page-type="关于" :fix-head="true" :need-add="true" ></nv-head>
-        
+    <div style="height: 100%;">      
         <dl class="about-info">
 
             <dt>这里是账号查询信息页面</dt>
@@ -27,7 +25,6 @@
     </div>
 </template>
 <script>
-    console.log(1231);
     import nvHead from '../components/header.vue';
     export default {
         methods: {

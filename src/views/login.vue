@@ -1,6 +1,5 @@
 <template>
     <div class="login-page">
-        <nv-head page-type="登录">
         </nv-head>
         <section class="page-body">
             <div class="label">
