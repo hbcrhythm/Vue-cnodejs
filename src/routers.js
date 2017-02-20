@@ -16,6 +16,7 @@ const routers = [{
     name: 'home',
     component: Home,
     meta: {
+        requiresAuth: true,
         showInSidebar: false,
         title: '主页'
     }
@@ -119,6 +120,18 @@ const routers = [{
     component(resolve) {
         require.ensure(['./views/login.vue'], () => {
             resolve(require('./views/login.vue'));
+        });
+    },
+    meta: {
+        showInSidebar: false,
+        title: 'login'
+    }
+}, {
+    path: '/login2',
+    name: 'login2',
+    component(resolve) {
+        require.ensure(['./views/login2.vue'], () => {
+            resolve(require('./views/login2.vue'));
         });
     },
     meta: {

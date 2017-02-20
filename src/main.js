@@ -8,7 +8,7 @@ import Alert from './libs/alert';
 import store from './vuex/user';
 import vueResource from 'vue-resource';
 // import mysql from 'mysql2';
-import App from 'components/app.vue';
+// import App from 'components/app.vue';
 import FastClick from 'fastclick';
 Vue.use(VueRouter);
 Vue.use(Alert);
@@ -44,7 +44,7 @@ router.beforeEach((to, from, next) => {
             next();
         } else {
             next({
-                path: '/login',
+                path: '/login2',
                 query: { redirect: to.fullPath }
             });
         }
@@ -52,9 +52,8 @@ router.beforeEach((to, from, next) => {
         next();
     }
 });
-
 new Vue({
     router,
-    store,
-    render: h => h(App)
+    store
+    // render: h => h(App)
 }).$mount('#app');
