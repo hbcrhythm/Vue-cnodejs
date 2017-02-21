@@ -40,14 +40,15 @@ router.beforeEach((to, from, next) => {
     // 处理左侧滚动不影响右边
     $('html, body, #page').removeClass('scroll-hide');
     if (to.matched.some(record => record.meta.requiresAuth)) {
-        if (store.state.userInfo.userId) {
-            next();
-        } else {
-            next({
-                path: '/login2',
-                query: { redirect: to.fullPath }
-            });
-        }
+        // if (store.state.userInfo.userId) {
+        //     next();
+        // } else {
+        //     next({
+        //         path: '/login2',
+        //         query: { redirect: to.fullPath }
+        //     });
+        // }
+        next();
     } else {
         next();
     }

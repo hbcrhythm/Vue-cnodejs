@@ -32,13 +32,15 @@ export default {
                 username: this.credentials.username,
                 password: this.credentials.password
             };
-
+            console.log(this.$root.el);
             this.$http.post('/auth/login', credentials).then(response => {
+                var defaultRender = this.$root.$options.render;
                 this.$root.$options.render = h => h(App);
+                console.log(response);
+                credentials.id_token = response.body.data.id_token;
+                credentials.default_render = defaultRender;
                 this.$store.dispatch('setUserInfo', credentials);
                 this.$router.push({ path: '/' });
-                // this.$store.dispatch('setIdToken', response.body.data.id_token);
-                // console.log(this.getidToken);
             }, response => {
                 console.log(response);
                 this.error = response.body.data;
