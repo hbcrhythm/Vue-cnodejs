@@ -1,12 +1,15 @@
 var db = require('../db/');
 
 function interceptorGen(loginStatus, errMsg) {
-  return function (req, res, next) {
-    if(!db.get('session').isEmpty().value() === loginStatus) {
-      next();
-    } else {
-      res.ajaxReturn(false, { errMsg: errMsg });
-    }
+  // return function (req, res, next) {
+  //   if(!db.get('session').isEmpty().value() === loginStatus) {
+  //     next();
+  //   } else {
+  //     res.ajaxReturn(false, { errMsg: errMsg });
+  //   }
+  // };
+  return function(req, res, next){
+  		next();
   };
 }
 

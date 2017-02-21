@@ -38,7 +38,9 @@
     import utils from '../libs/utils.js';
     import nvHead from '../components/header.vue';
     import nvTop from '../components/backtotop.vue';
-
+    import store from '../vuex/user';
+    console.log('store, state, id token', store.state.idToken);
+    console.log('mim ', store.state.userInfo);
     export default {
         filters: {
             getLastTimeStr(time, isFromNow) {

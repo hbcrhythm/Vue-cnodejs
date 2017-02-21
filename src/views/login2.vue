@@ -1,12 +1,13 @@
 <template>
-  <div class="col-sm-4 sol-sm-offset-4 top-30" >
-  	<div class="alert alert-danger" v-if="error">
+  <div class="col-sm-4 sol-sm-offset-4 m-t-w-f-m" >
+  	<div class="alert alert-danger " v-if="error">
   		<p>{{ error }}</p>
   	</div>
-  	<div class="form-group">
+    <h1 class="h1">NP登陆</h1>
+  	<div class="form-group ">
   		<input type="text" class="form-control" v-model="credentials.username" placeholder="请输入用户名">
   	</div>
-  	<div class="form-group">
+  	<div class="form-group ">
   		<input type="password" class="form-control" v-model="credentials.password" placeholder="请输入用户名">
   	</div>
   	<button class="btn btn-primary" @click="submit()">登陆</button>
@@ -31,18 +32,31 @@ export default {
                 username: this.credentials.username,
                 password: this.credentials.password
             };
-            credentials;
-            this.$root.$options.render = h => h(App);
-            this.$store.dispatch('setUserInfo', { userId: 1 });
-            this.$router.push({ path: '/' });
 
+            this.$http.post('/auth/login', credentials).then(response => {
+                this.$root.$options.render = h => h(App);
+                this.$store.dispatch('setUserInfo', credentials);
+                this.$router.push({ path: '/' });
+                // this.$store.dispatch('setIdToken', response.body.data.id_token);
+                // console.log(this.getidToken);
+            }, response => {
+                console.log(response);
+                this.error = response.body.data;
+            });
             // auth.login(this, credentials, 'secretquote')
         }
     }
 };
 </script>
 <style>
-.top-30 {
-	margin-top: 3cm;
+.m-t-w-f-m {
+	margin: auto;
+  text-align: center;
+  width: 33%;
+  float: none;
+  margin-top: 10%
+}
+.h1 {
+  front-size: xx-large
 }
 </style>
