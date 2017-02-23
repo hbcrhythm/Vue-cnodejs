@@ -59,6 +59,11 @@ module.exports = [{
   middlewares: [interceptor.NEED_AUTH],
   handler: authCtrls.logout
 }, {
+  path: '/auth/user',
+  method: 'GET',
+  middlewares: [interceptor.NEED_AUTH],
+  handler: authCtrls.user
+}, {
   path: '/api/lookupAccount',
   method: 'POST',
   handler: msgCtrls.lookupAccount

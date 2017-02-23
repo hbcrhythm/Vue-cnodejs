@@ -59,6 +59,7 @@ exports.login = function (req, res) {
   var profile = _.pick(req.body, userScheme.type, 'password', 'extra');
   profile.id = _.max(users, 'id').id + 1;
   console.log({id_token: createToken(profile)});
+  res.append('authorization','Bearer ' + createToken(profile));
   res.ajaxReturn({id_token: createToken(profile)});
 
   // var username = (req.body.username || '').trim();
@@ -77,3 +78,8 @@ exports.logout = function (req, res) {
   db.set('session', null).value();
   res.ajaxReturn();
 };
+
+// GET /auth/user
+exports.user = function (req, res) {
+  res.ajaxReturn(users[0]);
+}

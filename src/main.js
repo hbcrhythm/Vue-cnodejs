@@ -31,10 +31,6 @@ if (window.sessionStorage.user) {
     store.dispatch('setUserInfo', JSON.parse(window.sessionStorage.user));
 }
 
-// VueRouter.post('/api/lookupAccount', (req, res) => {
-//     console.log(req);
-// });
-
 // 登录中间验证，页面需要登录而没有登录的情况直接跳转登录
 router.beforeEach((to, from, next) => {
     // 处理左侧滚动不影响右边
@@ -53,8 +49,30 @@ router.beforeEach((to, from, next) => {
         next();
     }
 });
-new Vue({
-    router,
-    store
-    // render: h => h(App)
-}).$mount('#app');
+
+Vue.router = router;
+var component = {};
+component.router = Vue.router;
+component.store = store;
+// new Vue({
+//     router,
+//     store
+//     // render: h => h(App)
+// }).$mount('#app');
+
+new Vue(component).$mount('#app');
+
+// Vue Auth
+Vue.use(require('VUEAUTH/src/index.js'), {
+    auth: require('VUEAUTH/drivers/auth/bearer.js'),
+    http: require('VUEAUTH/drivers/http/vue-resource.1.x.js'),
+    // http: require(f'../../drivers/http/axios.1.x.js'),
+    router: require('VUEAUTH/drivers/router/vue-router.2.x.js'),
+    rolesVar: 'role',
+    facebookOauth2Data: {
+        clientId: '196729390739201'
+    },
+    googleOauth2Data: {
+        clientId: '337636458732-tatve7q4qo4gnpfcenbv3i47id4offbg.apps.googleusercontent.com'
+    }
+});

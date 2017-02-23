@@ -32,19 +32,29 @@ export default {
                 username: this.credentials.username,
                 password: this.credentials.password
             };
-            console.log(this.$root.el);
-            this.$http.post('/auth/login', credentials).then(response => {
-                var defaultRender = this.$root.$options.render;
-                this.$root.$options.render = h => h(App);
-                console.log(response);
-                credentials.id_token = response.body.data.id_token;
-                credentials.default_render = defaultRender;
-                this.$store.dispatch('setUserInfo', credentials);
-                this.$router.push({ path: '/' });
-            }, response => {
-                console.log(response);
-                this.error = response.body.data;
+            this.$auth.login({
+                body: credentials,
+                success(Params) {
+                    console.log('success ');
+                    console.log(this.$auth.user());
+                    console.log(Params);
+                    this.$store.dispatch('setUserInfo', this.$auth.user());
+                    this.$root.$options.render = h => h(App);
+                },
+                error(res) {
+                    console.log('error ' + this.context);
+                    this.error = res.data;
+                }
             });
+            // this.$http.post('/auth/login', credentials).then(response => {
+            //    this.$root.$options.render = h => h(App);
+            //    credentials.id_token = response.body.data.id_token;
+            //    this.$store.dispatch('setUserInfo', credentials);
+            //    this.$router.push({ path: '/' });
+            // }, response => {
+            //    console.log(response);
+            //    this.error = response.body.data;
+            // });
             // auth.login(this, credentials, 'secretquote')
         }
     }
