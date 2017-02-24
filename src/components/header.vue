@@ -80,7 +80,7 @@
                 $('html, body, #page').addClass('scroll-hide');
             },
             logout() {
-                this.$root.$options.render = h => h({});
+                this.$store.dispatch('setShowApp', false);
                 this.$store.dispatch('setUserInfo', {});
                 this.$router.push({ path: '/login2' });
             }

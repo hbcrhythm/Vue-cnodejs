@@ -35,7 +35,9 @@ export default {
             this.$auth.login({
                 body: credentials,
                 success(Params) {
+                    this.$store.dispatch('setShowApp', true);
                     this.$store.dispatch('setUserInfo', this.$auth.user());
+                    console.log('render');
                     this.$root.$options.render = h => h(App);
                 },
                 error(res) {

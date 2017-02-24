@@ -1,27 +1,32 @@
 <template>
     <!--- 这里用的变量必须为顶级变量 --->
 	<div>
-    <nv-head :page-type="$route.meta.title"
-            ref="head"
-            :fix-head="true"
-            :need-add="true"
-            :show-menu="showMenu"
-            :message-count="messageCount">
-    </nv-head>
-    <div class="row m-0">
-        <div class="col-md-3">
-            <summary2></summary2>
-        </div>
-        <div class="col-md-9">
-            <div>
-            <breadcrumb class="m-t-m-70-20"></breadcrumb>
+        <div v-if="this.$store.getters.getShowApp">
+            <nv-head :page-type="$route.meta.title"
+                    ref="head"
+                    :fix-head="true"
+                    :need-add="true"
+                    :show-menu="showMenu"
+                    :message-count="messageCount">
+            </nv-head>
+            <div class="row m-0">
+                <div class="col-md-3">
+                    <summary2></summary2>
+                </div>
+                <div class="col-md-9">
+                    <div>
+                    <breadcrumb class="m-t-m-70-20"></breadcrumb>
+                    </div>
+                    <div class="m-t-10">
+                        <router-view ></router-view>                
+                    </div>
+                </div>
             </div>
-            <div class="m-t-10">
-                <router-view ></router-view>                
-            </div>
+            <nv-top></nv-top>
         </div>
-    </div>
-    <nv-top></nv-top>
+        <div v-else class="m-t-10">
+            <router-view ></router-view>                
+        </div>
     </div>
 </template>
 <script>
@@ -48,7 +53,9 @@ export default {
     watch: {
         // 切换页面
         $route: function (to, from) {
-            this.$refs.head.show = false;
+            if (this.$refs.head) {
+                this.$refs.head.show = false;
+            }
         }
     }
 };
