@@ -54,15 +54,14 @@ Vue.router = router;
 var component = {};
 component.router = Vue.router;
 component.store = store;
+
 // new Vue({
 //     router,
 //     store
 //     // render: h => h(App)
 // }).$mount('#app');
 
-new Vue(component).$mount('#app');
-
-// Vue Auth
+// Vue Auth 本插件必须写挂在Vue组件前面, 以使中间件生效
 Vue.use(require('VUEAUTH/src/index.js'), {
     auth: require('VUEAUTH/drivers/auth/bearer.js'),
     http: require('VUEAUTH/drivers/http/vue-resource.1.x.js'),
@@ -76,3 +75,6 @@ Vue.use(require('VUEAUTH/src/index.js'), {
         clientId: '337636458732-tatve7q4qo4gnpfcenbv3i47id4offbg.apps.googleusercontent.com'
     }
 });
+
+new Vue(component).$mount('#app');
+console.log(localStorage.length);

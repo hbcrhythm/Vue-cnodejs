@@ -35,9 +35,6 @@ export default {
             this.$auth.login({
                 body: credentials,
                 success(Params) {
-                    console.log('success ');
-                    console.log(this.$auth.user());
-                    console.log(Params);
                     this.$store.dispatch('setUserInfo', this.$auth.user());
                     this.$root.$options.render = h => h(App);
                 },

@@ -46,7 +46,6 @@
 
 <script>
     import $ from 'webpack-zepto';
-
     export default {
         replace: true,
         props: {
@@ -81,7 +80,7 @@
                 $('html, body, #page').addClass('scroll-hide');
             },
             logout() {
-                this.$delete('render');
+                this.$root.$options.render = h => h({});
                 this.$store.dispatch('setUserInfo', {});
                 this.$router.push({ path: '/login2' });
             }

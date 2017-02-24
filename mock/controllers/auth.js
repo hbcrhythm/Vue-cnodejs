@@ -7,6 +7,10 @@ var users = [{
   id: 1,
   username: 'gonto',
   password: 'gonto'
+}, {
+  id: 2,
+  username: 'hbc',
+  password: 'hbc'
 }];
 
 function getUserScheme(req) {
@@ -39,6 +43,7 @@ function createToken(user) {
   return jwt.sign(_.omit(user, 'password'), config.secret, { expiresIn: 60*5 });
 }
 
+
 // GET /auth/checkLogin
 exports.checkLogin = function (req, res) {
   res.ajaxReturn(db.get('session').value());
@@ -62,15 +67,6 @@ exports.login = function (req, res) {
   res.append('authorization','Bearer ' + createToken(profile));
   res.ajaxReturn({id_token: createToken(profile)});
 
-  // var username = (req.body.username || '').trim();
-  // if (!username) {
-  //   return res.ajaxReturn(false, { errMsg: 'username 字段为空' });
-  // }
-
-  // var session = { username: username };
-
-  // db.set('session', session).value();
-  // res.ajaxReturn(session);
 };
 
 // DELETE /auth/logout
@@ -82,4 +78,15 @@ exports.logout = function (req, res) {
 // GET /auth/user
 exports.user = function (req, res) {
   res.ajaxReturn(users[0]);
+}
+
+// GET /auth/refresh
+exports.refresh = function (req, res) {
+    Token = req.header('Authorization');
+    if(Token) {
+      res.append('authorization','Bearer ' + createToken(users[1]));
+      res.ajaxReturn();
+    }else{
+      res.ajaxReturn(false, { errMsg: '404' });
+    }
 }
