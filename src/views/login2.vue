@@ -37,12 +37,11 @@ export default {
                 success(Params) {
                     this.$store.dispatch('setShowApp', true);
                     this.$store.dispatch('setUserInfo', this.$auth.user());
-                    console.log('render');
                     this.$root.$options.render = h => h(App);
                 },
                 error(res) {
-                    console.log('error ' + this.context);
-                    this.error = res.data;
+                    console.log('error ', res);
+                    this.error = res.data.errMsg;
                 }
             });
             // this.$http.post('/auth/login', credentials).then(response => {

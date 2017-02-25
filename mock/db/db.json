@@ -1,14 +1,17 @@
 {
-  "msgs": [
+  "msgs": [],
+  "users": [
     {
-      "title": "dfgdfg",
-      "content": "dfgdfgfd",
-      "id": "5be72630",
-      "author": "gfdg",
-      "ctime": 1486522232853
+      "username": "hbcww",
+      "password": "hbcww",
+      "id": 1,
+      "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImhiY3d3IiwiaWQiOjEsImlhdCI6MTQ4ODAxNjM0NywiZXhwIjoxNDg4MDE2NjQ3fQ.zbO4uNTUuaVe4_BLpTvtIcTWALDFzxnWJtKMLvL1og8"
+    },
+    {
+      "username": "33",
+      "password": "33",
+      "id": 2,
+      "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6IjMzIiwiaWQiOjIsImlhdCI6MTQ4ODAwODYxMywiZXhwIjoxNDg4MDA4OTEzfQ.5qf5J7-bBe4rcNQXwsbaOY12SwBy1Cx3vNRSVPAFIjI"
     }
-  ],
-  "session": {
-    "username": "gfdg"
-  }
+  ]
 }

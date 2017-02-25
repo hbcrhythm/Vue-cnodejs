@@ -1,4 +1,4 @@
-var db = require('../db/');
+var db = require('../db/index.lowdb');
 
 function interceptorGen(loginStatus, errMsg) {
   // return function (req, res, next) {

@@ -1,17 +1,17 @@
-var db = require('../db/');
+var db = require('../db/index.lowdb');
 _      = require('lodash'),
 jwt    = require('jsonwebtoken');
 config = require('../../build/config/JWT'); 
 // XXX: This should be a database of users :).
-var users = [{
-  id: 1,
-  username: 'gonto',
-  password: 'gonto'
-}, {
-  id: 2,
-  username: 'hbc',
-  password: 'hbc'
-}];
+// var users = [{
+//   id: 1,
+//   username: 'gonto',
+//   password: 'gonto'
+// }, {
+//   id: 2,
+//   username: 'hbc',
+//   password: 'hbc'
+// }];
 
 function getUserScheme(req) {
   
@@ -40,9 +40,21 @@ function getUserScheme(req) {
 }
 
 function createToken(user) {
-  return jwt.sign(_.omit(user, 'password'), config.secret, { expiresIn: 60*5 });
+  return jwt.sign(_.omit(user, ['password', 'token']), config.secret, { expiresIn: 60*5 });
 }
 
+function getToken(req){
+    var Auth = req.header('Authorization');
+    if(Auth) {
+      const parts = Auth.split(' ');
+      if(!Object.is(parts.length, 2) || !Object.is(parts[0], 'Bearer')){
+        return false;
+      }
+      return parts[1];
+    }else {
+        return false;
+    }
+}
 
 // GET /auth/checkLogin
 exports.checkLogin = function (req, res) {
@@ -51,22 +63,37 @@ exports.checkLogin = function (req, res) {
 
 // POST /auth/login
 exports.login = function (req, res) {
+  console.log(12312);
   var userScheme = getUserScheme(req);
 
   if(!userScheme.username || !req.body.password) {
+    res.status(400);
     return res.ajaxReturn(false, { errMsg: "You must send the username and the password" });
   }
 
-  if(_.find(users, userScheme.userSearch)) {
-    return res.ajaxReturn(false, { errMsg: "A user with that username already exists" });
+  var User = db.get('users').find({username: userScheme.username}).value();
+  if(typeof User === 'undefined'){
+    res.status(400);
+    return res.ajaxReturn(false, { errMsg: "You must create a user with login"});
+  } 
+  // if(_.find(db.get('users')., userScheme.userSearch)) {
+  //   return res.ajaxReturn(false, { errMsg: "A user with that username already exists" });
+  // }
+  
+  if(User.password !== req.body.password){
+    res.status(400);
+    return res.ajaxReturn(false, { errMsg: "Username or password error !"});
   }
 
-  var profile = _.pick(req.body, userScheme.type, 'password', 'extra');
-  profile.id = _.max(users, 'id').id + 1;
-  console.log({id_token: createToken(profile)});
-  res.append('authorization','Bearer ' + createToken(profile));
-  res.ajaxReturn({id_token: createToken(profile)});
+  // var profile = _.pick(req.body, userScheme.type, 'password', 'extra');
+  // console.log(profile);
 
+  // User.id = _.max(db.get('users').value(), 'id').id + 1;
+  User.token = createToken(User);
+  console.log(User); 
+  db.get('users').find({username: userScheme.username}).assign(User).write();
+  res.append('authorization','Bearer ' + User.token);
+  res.ajaxReturn();
 };
 
 // DELETE /auth/logout
@@ -77,16 +104,29 @@ exports.logout = function (req, res) {
 
 // GET /auth/user
 exports.user = function (req, res) {
-  res.ajaxReturn(users[0]);
+  var token = getToken(req);
+  if(token === false) {
+    return res.ajaxReturn(false, { errMsg: "token undefined !" });
+  }
+  User = db.get('users').find({token, token}).value();
+  res.ajaxReturn(User);
 }
 
 // GET /auth/refresh
 exports.refresh = function (req, res) {
-    Token = req.header('Authorization');
-    if(Token) {
-      res.append('authorization','Bearer ' + createToken(users[1]));
+    Auth = req.header('Authorization');
+    if(Auth) {
+      const parts = Auth.split(' ');
+      if(!Object.is(parts.length, 2) || !Object.is(parts[0], 'Bearer')){
+        return res.ajaxReturn(false, { errMsg: '404' });
+      }
+      User = db.get('users').find({token: parts[1]}).value();
+      User.token = createToken(User);
+      db.get('users').find({token: parts[1]}).assign(User).write();
+      res.append('authorization','Bearer ' + User.token);
       res.ajaxReturn();
     }else{
       res.ajaxReturn(false, { errMsg: '404' });
     }
 }
+

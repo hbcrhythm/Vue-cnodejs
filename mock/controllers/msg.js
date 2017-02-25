@@ -1,5 +1,5 @@
 var uuid = require('uuid/v1'),
-  db = require('../db/');
+  db = require('../db/index.mysql');
 
 // GET /msg
 exports.getList = function (req, res) {
