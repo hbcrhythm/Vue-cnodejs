@@ -1,6 +1,7 @@
 var db = require('../db/index.lowdb');
 _      = require('lodash'),
-jwt    = require('jsonwebtoken');
+jwt    = require('jsonwebtoken'),
+util   = require('../libs/util');
 config = require('../../build/config/JWT'); 
 // XXX: This should be a database of users :).
 // var users = [{
@@ -41,19 +42,6 @@ function getUserScheme(req) {
 
 function createToken(user) {
   return jwt.sign(_.omit(user, ['password', 'token']), config.secret, { expiresIn: 60*5 });
-}
-
-function getToken(req){
-    var Auth = req.header('Authorization');
-    if(Auth) {
-      const parts = Auth.split(' ');
-      if(!Object.is(parts.length, 2) || !Object.is(parts[0], 'Bearer')){
-        return false;
-      }
-      return parts[1];
-    }else {
-        return false;
-    }
 }
 
 // GET /auth/checkLogin
@@ -104,7 +92,7 @@ exports.logout = function (req, res) {
 
 // GET /auth/user
 exports.user = function (req, res) {
-  var token = getToken(req);
+  var token = util.getToken(req);
   if(token === false) {
     return res.ajaxReturn(false, { errMsg: "token undefined !" });
   }

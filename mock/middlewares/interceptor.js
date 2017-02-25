@@ -1,4 +1,5 @@
 var db = require('../db/index.lowdb');
+var util = require('../libs/util');
 
 function interceptorGen(loginStatus, errMsg) {
   // return function (req, res, next) {
@@ -8,9 +9,18 @@ function interceptorGen(loginStatus, errMsg) {
   //     res.ajaxReturn(false, { errMsg: errMsg });
   //   }
   // };
-  return function(req, res, next){
-  		next();
-  };
+  return function (req, res, next) {
+    var token = util.getToken(req);
+    if(token === false) {
+      return ajaxReturn(false, { errMsg: errMsg });
+    }
+    User = db.get('users').find({'token': token}).value();
+    console.log('user' , User);
+    if(token !== User.token){
+      return ajaxReturn(false, { errMsg: errMsg });
+    }
+    next();
+  }
 }
 
 module.exports = {

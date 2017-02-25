@@ -51,7 +51,6 @@ module.exports = [{
 }, {
   path: '/auth/login',
   method: 'POST',
-  middlewares: [interceptor.FORBID_AUTHED],
   handler: authCtrls.login
 }, {
   path: '/auth/logout',
