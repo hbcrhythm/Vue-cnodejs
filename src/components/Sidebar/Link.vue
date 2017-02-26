@@ -1,7 +1,9 @@
 <template>
-  <router-link class="btn btn-default btn-block m-t-0 vlink"
+  <router-link class="pd-20-ta-l btn btn-default btn-block m-t-0 vlink"
   :class="{ 'matched-route': path === curMatchedPath }" :to="vlinkContent">
-    <i :class="icon" ></i>
+     <svg class="icon" :class="{'icon-child': isChild }" aria-hidden="true">
+          <use :xlink:href="icon"></use>
+      </svg>
     {{ title }}
   </router-link>
 </template>
@@ -13,7 +15,8 @@ export default {
         path: { type: String, required: true },
         title: { type: String, required: true },
         icon: { type: String, default: 'fa fa-link' },
-        isExact: { type: Boolean, default: false }
+        isExact: { type: Boolean, default: false },
+        isChild: { type: Boolean, default: false }
     },
     computed: {
         curMatchedRoute () {
@@ -50,5 +53,17 @@ export default {
 .matched-route {
   color: #fff !important;
   background-color: #31b0d5 !important;
+}
+.pd-20-ta-l {
+  padding-left: 20px;
+  text-align: left;
+}
+.icon-r-2 {
+  margin-right: 20px;
+}
+
+.icon-child {
+  margin-right: 20px;
+  margin-left: 15px;
 }
 </style>

@@ -11,7 +11,7 @@ var  PATHS = require('./config/PATHS')
 var  PORTS = require('./config/PORTS')
 
 // Mock server
-require(PATHS.MOCK.join('node-app')).listen(PORTS.MOCK_SERVER);
+// require(PATHS.MOCK.join('node-app')).listen(PORTS.MOCK_SERVER);
 
 // default port where dev server listens for incoming traffic
 var port = process.env.PORT || config.dev.port

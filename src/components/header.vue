@@ -13,10 +13,13 @@
                 <div class="icon-about iconfont"
                         @click="openServerMenu"
                         v-if="fixHead">
+                    <svg class="icon" aria-hidden="true"  style="font-size:30px">
+                        <use xlink:href="#icon-list"></use>
+                    </svg>
                 </div>
                 <span v-text="pageType"></span>
                 <i class="num" v-if="messageCount > 0"> {{messageCount}}</i>
-                <div class="dropdown m-r-50">  
+                <div class="dropdown m-r-15">  
                     <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false"  >
                         {{nickname}}                    
                         <span class="caret"></span>
@@ -28,8 +31,10 @@
                 </div>
                 <div>
                 <router-link to="/add">
-                    <i v-if="needAdd" v-show="!messageCount || messageCount <= 0"
-                        class="iconfont add-icon">&#xe60f;</i>
+                    <i v-if="needAdd" v-show="!messageCount || messageCount <= 0"></i>
+                    <svg class="icon m-r-20-f" aria-hidden="true">
+                        <use xlink:href="#icon-heart">&#xe60f;</use>
+                    </svg>
                 </router-link>
                 </div>
             </div>
@@ -80,9 +85,17 @@
                 $('html, body, #page').addClass('scroll-hide');
             },
             logout() {
-                this.$store.dispatch('setShowApp', false);
-                this.$store.dispatch('setUserInfo', {});
-                this.$router.push({ path: '/login2' });
+                this.$auth.logout({
+                    makeRequest: true,
+                    success() {
+                        this.$store.dispatch('setShowApp', false);
+                        this.$store.dispatch('setUserInfo', {});
+                        this.$router.push({ path: '/login2' });
+                    },
+                    error(res) {
+                        console.log('error logout' + res);
+                    }
+                });
             }
         },
         components: {
@@ -92,13 +105,17 @@
     };
 </script>
 <style>
-.m-r-50 {
-    margin-right: 50px;
+.m-r-15 {
+    margin-right: 15px;
     white-space: nowrap;
 }
 .min-d-m {
     min-width: 88px;
     border: 0px;
     border: 0px solid rgba(0,0,0,0)
+}
+.m-r-20-f {
+    margin-right: 20px;
+    font-size: 25px;
 }
 </style>

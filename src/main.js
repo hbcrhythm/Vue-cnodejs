@@ -8,7 +8,7 @@ import Alert from './libs/alert';
 import store from './vuex/user';
 import vueResource from 'vue-resource';
 // import mysql from 'mysql2';
-// import App from 'components/app.vue';
+import App from 'components/app.vue';
 import FastClick from 'fastclick';
 Vue.use(VueRouter);
 Vue.use(Alert);
@@ -36,14 +36,14 @@ router.beforeEach((to, from, next) => {
     // 处理左侧滚动不影响右边
     $('html, body, #page').removeClass('scroll-hide');
     if (to.matched.some(record => record.meta.requiresAuth)) {
-        // if (store.state.userInfo.userId) {
-        //     next();
-        // } else {
-        //     next({
-        //         path: '/login2',
-        //         query: { redirect: to.fullPath }
-        //     });
-        // }
+        if (store.state.userInfo.username) {
+            next();
+        } else {
+            next({
+                path: '/login2',
+                query: { redirect: to.fullPath }
+            });
+        }
         next();
     } else {
         next();
@@ -51,9 +51,6 @@ router.beforeEach((to, from, next) => {
 });
 
 Vue.router = router;
-var component = {};
-component.router = Vue.router;
-component.store = store;
 
 // new Vue({
 //     router,
@@ -76,5 +73,7 @@ Vue.use(require('VUEAUTH/src/index.js'), {
     }
 });
 
-new Vue(component).$mount('#app');
-console.log(localStorage.length);
+App.router = Vue.router;
+App.store = store;
+
+new Vue(App).$mount('#app');

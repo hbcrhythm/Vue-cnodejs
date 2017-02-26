@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import App from 'components/app.vue';
+// import App from 'components/app.vue';
 export default {
     data() {
         return {
@@ -37,7 +37,7 @@ export default {
                 success(Params) {
                     this.$store.dispatch('setShowApp', true);
                     this.$store.dispatch('setUserInfo', this.$auth.user());
-                    this.$root.$options.render = h => h(App);
+                  // this.$root.$options.render = h => h(App);
                 },
                 error(res) {
                     console.log('error ', res);

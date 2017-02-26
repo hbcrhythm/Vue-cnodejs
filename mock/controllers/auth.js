@@ -86,8 +86,12 @@ exports.login = function (req, res) {
 
 // DELETE /auth/logout
 exports.logout = function (req, res) {
-  db.set('session', null).value();
-  res.ajaxReturn();
+  var token = util.getToken(req);
+  if(!token) {
+    return res.ajaxReturn(false, { errMsg: "token undefined !"});
+  }
+  db.get('users').find({token: token}).assign({token: null}).write();
+  res.ajaxReturn(true);
 };
 
 // GET /auth/user
@@ -96,7 +100,7 @@ exports.user = function (req, res) {
   if(token === false) {
     return res.ajaxReturn(false, { errMsg: "token undefined !" });
   }
-  User = db.get('users').find({token, token}).value();
+  User = db.get('users').find({token: token}).value();
   res.ajaxReturn(User);
 }
 

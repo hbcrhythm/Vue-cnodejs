@@ -15,7 +15,6 @@ function interceptorGen(loginStatus, errMsg) {
       return ajaxReturn(false, { errMsg: errMsg });
     }
     User = db.get('users').find({'token': token}).value();
-    console.log('user' , User);
     if(token !== User.token){
       return ajaxReturn(false, { errMsg: errMsg });
     }

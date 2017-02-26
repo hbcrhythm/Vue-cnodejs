@@ -48,6 +48,7 @@ const routers = [{
     name: 'list',
     component: List,
     meta: {
+        requiresAuth: true,
         showInSidebar: false,
         title: '全部'
     }
@@ -112,7 +113,7 @@ const routers = [{
     meta: {
         showInSidebar: true,
         title: '灰色天空',
-        icon: 'icon-about1 iconfont'
+        icon: '#icon-whale__easyiconnet'
     }
 }, {
     path: '/login',
@@ -149,7 +150,7 @@ const routers = [{
     meta: {
         showInSidebar: true,
         title: '查询账号信息',
-        icon: 'icon-about1 iconfont'
+        icon: '#icon-hills__easyiconnet'
     },
     children: [
         {
@@ -162,7 +163,7 @@ const routers = [{
             },
             meta: {
                 title: '查询1',
-                icon: 'icon-about iconfont'
+                icon: '#icon-train__easyiconnet'
             }
         },
         {
@@ -175,7 +176,7 @@ const routers = [{
             },
             meta: {
                 title: '查询2',
-                icon: 'icon-about iconfont'
+                icon: '#icon-tornado__easyiconnet'
             }
         },
         {
@@ -188,7 +189,7 @@ const routers = [{
             },
             meta: {
                 title: '查询3',
-                icon: 'icon-about iconfont'
+                icon: '#icon-tractor__easyiconnet'
             }
         }
     ]

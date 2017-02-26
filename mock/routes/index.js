@@ -54,7 +54,7 @@ module.exports = [{
   handler: authCtrls.login
 }, {
   path: '/auth/logout',
-  method: 'DELETE',
+  method: 'POST',
   middlewares: [interceptor.NEED_AUTH],
   handler: authCtrls.logout
 }, {

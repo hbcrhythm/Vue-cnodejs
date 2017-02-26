@@ -5,7 +5,7 @@
 </template>
 <script>
     require('../assets/scss/CV.scss');
-    require('../assets/scss/iconfont/iconfont.css');
+    // require('../assets/scss/iconfont/iconfont.css');
     require('../assets/scss/github-markdown.css');
 
     export default {
@@ -24,4 +24,5 @@
         background-color: #fff;
         margin-top: 40%;
     }
+
 </style>

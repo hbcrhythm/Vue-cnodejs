@@ -2,8 +2,10 @@ var express = require('express'),
   bodyParser = require('body-parser'),
   routes = require('./routes/'),
   notFound = require('./middlewares/notFound'),
+  PORTS = require('../build/config/PORTS.js'),
   simpleLogger = require('./middlewares/simpleLogger'),
   resAjaxReturn = require('./middlewares/res.ajaxReturn');
+
 
 var app = express();
 app.use(bodyParser.json());
@@ -22,5 +24,7 @@ routes.forEach(function (route) {
 });
 
 app.use(notFound);
+app.listen(PORTS.MOCK_SERVER);
+// app.applisten(8989);
 
 module.exports = app;

@@ -3,9 +3,11 @@
     <template v-for="(route, index) in routes">
       <div v-if="route.children">
         <a :href="'#panel'+index"
-          class="btn btn-default btn-block"
+          class="btn btn-default btn-block pd-20-ta-l"
           data-toggle="collapse" data-parent="#sidebar" >
-          <i :class="route.meta.icon"  class="m-l-10"></i>
+          <svg class="icon" aria-hidden="true">
+              <use v-bind:xlink:href="route.meta.icon"></use>
+          </svg>
           {{ route.meta.title }}
           <span class="caret"></span>
         </a>
@@ -13,7 +15,8 @@
           <link2 v-for="subRoute in route.children"
             :path="route.path+'/'+subRoute.path"
             :title="subRoute.meta.title"
-            :icon="subRoute.meta.icon">
+            :icon="subRoute.meta.icon"
+            :isChild=true>
             {{$route.path+subRoute.path}}
           </link2>
         </div><!-- .collapse -->
@@ -22,7 +25,8 @@
         :path="route.path"
         :title="route.meta.title"
         :icon="route.meta.icon"
-        :is-exact="true">
+        :is-exact="true"
+        >
       </link2>
     </template>
   </div><!-- #sidebar -->
@@ -65,4 +69,9 @@ export default {
 .m-l-10 {
   margin: 0px 0px 0px 20px;
 }
+.pd-20-ta-l {
+  padding-left: 20px;
+  text-align: left;
+}
+
 </style>
