@@ -2,7 +2,11 @@
 本项目使用技术栈 
 vue vuex vue-resource vue-router mysql2 jwts express 等,
 框架已经基本完成, 但一些细节并没有详细去调整，比如一些按钮的功能。
+
+可以配合服务端和客户端使用。
+
 game server: https://github.com/hbcrhythm/np
+
 h5   client: https://github.com/hbcrhythm/EgretGameEngine
 
 ###安装
