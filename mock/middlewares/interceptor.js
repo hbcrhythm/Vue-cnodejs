@@ -12,11 +12,11 @@ function interceptorGen(loginStatus, errMsg) {
   return function (req, res, next) {
     var token = util.getToken(req);
     if(token === false) {
-      return ajaxReturn(false, { errMsg: errMsg });
+      return res.ajaxReturn(false, { errMsg: errMsg });
     }
     User = db.get('users').find({'token': token}).value();
     if(token !== User.token){
-      return ajaxReturn(false, { errMsg: errMsg });
+      return res.ajaxReturn(false, { errMsg: errMsg });
     }
     next();
   }

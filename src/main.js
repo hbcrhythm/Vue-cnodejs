@@ -51,6 +51,11 @@ router.beforeEach((to, from, next) => {
 });
 
 Vue.router = router;
+Vue.http.options.root = 'https://127.0.0.1:8989';
+Vue.http.options.emulateJSON = true;
+// http: {
+//     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+// }
 
 // new Vue({
 //     router,
